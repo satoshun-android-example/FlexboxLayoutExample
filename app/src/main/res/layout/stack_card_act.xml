@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layoutDescription="@xml/stack_card_scene"
+  tools:ignore="HardcodedText"
+  tools:showPaths="true">
+
+  <com.google.android.material.card.MaterialCardView
+    android:id="@+id/one"
+    android:layout_width="240dp"
+    android:layout_height="240dp"
+    app:cardBackgroundColor="@android:color/holo_red_light"
+    app:cardCornerRadius="8dp" />
+
+  <com.google.android.material.card.MaterialCardView
+    android:id="@+id/two"
+    android:layout_width="240dp"
+    android:layout_height="240dp"
+    app:cardBackgroundColor="@android:color/darker_gray"
+    app:cardCornerRadius="8dp" />
+
+  <com.google.android.material.card.MaterialCardView
+    android:id="@+id/three"
+    android:layout_width="240dp"
+    android:layout_height="240dp"
+    app:cardBackgroundColor="@android:color/holo_blue_light"
+    app:cardCornerRadius="8dp" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
