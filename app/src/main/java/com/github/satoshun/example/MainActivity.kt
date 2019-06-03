@@ -2,45 +2,73 @@ package com.github.satoshun.example
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.motion.widget.MotionScene
-import androidx.core.view.doOnLayout
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.main_act.*
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.satoshun.example.databinding.MainActBinding
+import com.github.satoshun.example.databinding.MainContainerItemBinding
+import com.github.satoshun.example.databinding.MainItemBinding
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.databinding.BindableItem
 
 class MainActivity : AppCompatActivity() {
+  private lateinit var binding: MainActBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.main_act)
+    binding = DataBindingUtil.setContentView(this, R.layout.main_act)
 
-    Glide.with(this)
-      .load("https://pbs.twimg.com/profile_images/1125348342676897792/14E24iP9_400x400.jpg")
-      .into(left)
+    val manager = LinearLayoutManager(this)
+    binding.recycler.layoutManager = manager
+    binding.recycler.adapter = MainAdapter()
+  }
+}
 
-    Glide.with(this)
-      .load("https://pbs.twimg.com/profile_images/1125348342676897792/14E24iP9_400x400.jpg")
-      .into(right)
+class MainAdapter : GroupAdapter<ViewHolder>() {
+  init {
+    addAll(
+      listOf(
+        MainContainerItem(ChipAdapter().apply {
+          updateChips(mockItems)
+        })
+      )
+    )
+  }
+}
 
-    root.setTransitionListener(object : MotionLayout.TransitionListener {
-      override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+class ChipAdapter : GroupAdapter<ViewHolder>() {
+  fun updateChips(items: List<String>) {
+    addAll(items.map { MainItem(it) })
+  }
+}
+
+class MainContainerItem(
+  private val adapter: ChipAdapter
+) : BindableItem<MainContainerItemBinding>() {
+  override fun getLayout(): Int = R.layout.main_container_item
+
+  override fun bind(binding: MainContainerItemBinding, position: Int) {
+    if (binding.recycler.adapter == null) {
+      binding.recycler.layoutManager = FlexboxLayoutManager(binding.root.context).apply {
+        flexWrap = FlexWrap.WRAP
       }
-
-      override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
-      }
-
-      override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
-      }
-
-      override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
-      }
-
-      override fun allowsTransition(p0: MotionScene.Transition?): Boolean {
-        return true
-      }
-    })
-
-    root.doOnLayout {
-      root.transitionToEnd()
+      binding.recycler.adapter = adapter
     }
   }
+}
+
+class MainItem(
+  private val title: String
+) : BindableItem<MainItemBinding>() {
+  override fun getLayout(): Int = R.layout.main_item
+
+  override fun bind(binding: MainItemBinding, position: Int) {
+    binding.chip.text = title
+  }
+}
+
+private val mockItems = (100..1000).map {
+  it.toString()
 }

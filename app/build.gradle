@@ -22,6 +22,9 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+  dataBinding {
+    enabled = true
+  }
 }
 
 dependencies {
@@ -40,6 +43,9 @@ dependencies {
   implementation GLIDE
 
   implementation FLEXBOX
+
+  implementation GROUPIE
+  implementation GROUPIE_DATABINDING
 
   testImplementation JUNIT
 
