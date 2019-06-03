@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/root"
   android:layout_width="match_parent"
@@ -13,77 +12,5 @@
     android:id="@+id/main1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="main1"
-
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-  <Button
-    android:id="@+id/main2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="main2"
-    app:layout_constraintEnd_toEndOf="@id/main1"
-    app:layout_constraintStart_toStartOf="@id/main1"
-    app:layout_constraintTop_toBottomOf="@id/main1" />
-
-  <Button
-    android:id="@+id/main3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="main3"
-    app:layout_constraintEnd_toEndOf="@id/main2"
-    app:layout_constraintStart_toStartOf="@id/main2"
-    app:layout_constraintTop_toBottomOf="@id/main2" />
-
-  <Button
-    android:id="@+id/main4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="main4"
-    app:layout_constraintEnd_toEndOf="@id/main3"
-    app:layout_constraintStart_toStartOf="@id/main3"
-    app:layout_constraintTop_toBottomOf="@id/main3" />
-
-  <Button
-    android:id="@+id/flow"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="flow"
-    app:layout_constraintEnd_toEndOf="@id/main4"
-    app:layout_constraintStart_toStartOf="@id/main4"
-    app:layout_constraintTop_toBottomOf="@id/main4" />
-
-  <Button
-    android:id="@+id/flow_motion_layout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="motionlayout with flow"
-    app:layout_constraintEnd_toEndOf="@id/flow"
-    app:layout_constraintStart_toStartOf="@id/flow"
-    app:layout_constraintTop_toBottomOf="@id/flow" />
-
-  <Button
-    android:id="@+id/stack_card"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="stack card"
-    app:layout_constraintEnd_toEndOf="@id/flow_motion_layout"
-    app:layout_constraintStart_toStartOf="@id/flow_motion_layout"
-    app:layout_constraintTop_toBottomOf="@id/flow_motion_layout" />
-
-  <Button
-    android:id="@+id/recycler"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="recycler"
-    app:layout_constraintEnd_toEndOf="@id/stack_card"
-    app:layout_constraintStart_toStartOf="@id/stack_card"
-    app:layout_constraintTop_toBottomOf="@id/stack_card" />
-
-  <Button
-    android:id="@+id/flexbox"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="flexbox" />
+    android:text="main1" />
 </LinearLayout>

@@ -22,13 +22,5 @@
     </activity>
 
     <activity android:name=".MainActivity" />
-    <activity android:name=".MainActivity2" />
-    <activity android:name=".MainActivity3" />
-    <activity android:name=".MainActivity4" />
-    <activity android:name=".FlowExampleActivity" />
-    <activity android:name=".FlowMotionLayoutExampleActivity" />
-    <activity android:name=".StackCardExampleActivity" />
-    <activity android:name=".RecyclerViewFlowExample" />
-    <activity android:name=".flexbox.RecyclerViewFlexboxActivity" />
   </application>
 </manifest>
