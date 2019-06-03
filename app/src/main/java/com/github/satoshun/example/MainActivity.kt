@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainContainerItemBinding
 import com.github.satoshun.example.databinding.MainItemBinding
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
+import android.opengl.ETC1.getHeight
+import android.view.View
+import android.view.ViewTreeObserver
+
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: MainActBinding
@@ -52,9 +55,14 @@ class MainContainerItem(
   override fun bind(binding: MainContainerItemBinding, position: Int) {
     if (binding.recycler.adapter == null) {
       binding.recycler.layoutManager = FlexboxLayoutManager(binding.root.context).apply {
+        flexDirection = FlexDirection.ROW
         flexWrap = FlexWrap.WRAP
       }
       binding.recycler.adapter = adapter
+
+      binding.recycler.viewTreeObserver.addOnGlobalLayoutListener(
+        OnViewGlobalLayoutListener(binding.recycler)
+      )
     }
   }
 }
@@ -69,6 +77,20 @@ class MainItem(
   }
 }
 
-private val mockItems = (100..1000).map {
+private val mockItems = (100..180).map {
   it.toString()
+}
+
+private class OnViewGlobalLayoutListener(
+  private val view: View
+) : ViewTreeObserver.OnGlobalLayoutListener {
+  companion object {
+    private const val maxHeightPx = 620
+  }
+
+  override fun onGlobalLayout() {
+    if (view.height > maxHeightPx) {
+      view.layoutParams = view.layoutParams.apply { height = maxHeightPx }
+    }
+  }
 }
