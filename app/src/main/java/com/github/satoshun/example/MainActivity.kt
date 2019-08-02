@@ -36,9 +36,7 @@ class MainActivity : AppCompatActivity() {
   }
 }
 
-class MainAdapter(
-  private val manager: FlexboxLayoutManager
-) : GroupAdapter<ViewHolder>() {
+class MainAdapter(manager: FlexboxLayoutManager) : GroupAdapter<ViewHolder>() {
   init {
     addAll(
       listOf(
@@ -130,7 +128,7 @@ private class OnViewGlobalLayoutListener(
   private val view: View
 ) : ViewTreeObserver.OnGlobalLayoutListener {
   companion object {
-    private const val maxHeightPx = 124 * 5
+    private const val maxHeightPx = 130 * 5
   }
 
   override fun onGlobalLayout() {
@@ -150,7 +148,7 @@ private class OnViewGlobalLayoutListener2(
       view.layoutParams = view.layoutParams.apply { height = 0 }
     } else {
       // limit
-      view.layoutParams = view.layoutParams.apply { height = 124 * (5 - manager.flexLines.size) }
+      view.layoutParams = view.layoutParams.apply { height = 130 * (5 - manager.flexLines.size) }
     }
   }
 }
