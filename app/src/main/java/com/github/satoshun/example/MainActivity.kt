@@ -1,5 +1,6 @@
 package com.github.satoshun.example
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -10,9 +11,7 @@ import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainContainerItemBinding
 import com.github.satoshun.example.databinding.MainItemBinding
 import com.github.satoshun.example.databinding.SubContainerItemBinding
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
@@ -27,12 +26,11 @@ class MainActivity : AppCompatActivity() {
     val manager = LinearLayoutManager(this)
     binding.recycler.layoutManager = manager
 
-    val lmanager = FlexboxLayoutManager(this).apply {
-      flexDirection = FlexDirection.ROW
+    binding.recycler.adapter = MainAdapter(flexboxLayoutManager(
+      context = this,
+      flexDirection = FlexDirection.ROW,
       flexWrap = FlexWrap.WRAP
-    }
-
-    binding.recycler.adapter = MainAdapter(lmanager)
+    ))
   }
 }
 
@@ -93,10 +91,12 @@ class SubContainerItem(
 
   override fun bind(binding: SubContainerItemBinding, position: Int) {
     if (binding.recycler.adapter == null) {
-      binding.recycler.layoutManager = FlexboxLayoutManager(binding.root.context).apply {
-        flexDirection = FlexDirection.ROW
-        flexWrap = FlexWrap.WRAP
-      }
+      binding.recycler.layoutManager = flexboxLayoutManager(
+        context = binding.root.context,
+        flexDirection = FlexDirection.COLUMN,
+        justifyContent = JustifyContent.FLEX_START,
+        alignItems = AlignItems.FLEX_START
+      )
       binding.recycler.adapter = subAdapter
 
       binding.recycler.viewTreeObserver.addOnGlobalLayoutListener(
@@ -152,3 +152,15 @@ private class OnViewGlobalLayoutListener2(
     }
   }
 }
+
+private fun flexboxLayoutManager(
+  context: Context,
+  @FlexDirection flexDirection: Int = FlexDirection.ROW,
+  @FlexWrap flexWrap: Int = FlexWrap.WRAP,
+  @JustifyContent justifyContent: Int = JustifyContent.FLEX_START,
+  @AlignItems alignItems: Int = AlignItems.STRETCH
+) = FlexboxLayoutManager(context, flexDirection, flexWrap)
+  .apply {
+    this.justifyContent = justifyContent
+    this.alignItems = alignItems
+  }
