@@ -21,6 +21,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".MainActivity" />
+    <activity android:name=".FlexboxActivity" />
+    <activity android:name=".StaggeredActivity" />
   </application>
 </manifest>

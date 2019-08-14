@@ -11,7 +11,11 @@ class AppActivity : AppCompatActivity() {
     setContentView(R.layout.app_act)
 
     main1.setOnClickListener {
-      startActivity(Intent(this, MainActivity::class.java))
+      startActivity(Intent(this, FlexboxActivity::class.java))
+    }
+
+    main2.setOnClickListener {
+      startActivity(Intent(this, StaggeredActivity::class.java))
     }
   }
 }

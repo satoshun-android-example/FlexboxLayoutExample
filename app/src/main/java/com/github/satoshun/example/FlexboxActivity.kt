@@ -16,7 +16,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
 
-class MainActivity : AppCompatActivity() {
+class FlexboxActivity : AppCompatActivity() {
   private lateinit var binding: MainActBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
