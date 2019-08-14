@@ -117,7 +117,7 @@ class MainItem(
   }
 }
 
-private val mockItems1 = (100..130).map {
+val mockItems1 = (100..180).map {
   it.toString()
 }
 private val mockItems = (200..250).map {
