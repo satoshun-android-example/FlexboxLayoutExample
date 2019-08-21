@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
+import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import kotlinx.android.synthetic.main.app_act.*
 
 class AppActivity : AppCompatActivity() {
@@ -13,6 +14,10 @@ class AppActivity : AppCompatActivity() {
 
     main1.setOnClickListener {
       startActivity(Intent(this, FlexboxActivity::class.java))
+    }
+
+    flexbox2.setOnClickListener {
+      startActivity(Intent(this, FlexboxActivity2::class.java))
     }
 
     main2.setOnClickListener {
