@@ -2,11 +2,14 @@ package com.github.satoshun.example.flexbox2
 
 import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.*
 import com.google.android.flexbox.*
@@ -21,44 +24,43 @@ class FlexboxActivity2 : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.flexbox2_act)
 
-    val manager = LinearLayoutManager(this)
-    binding.recycler.layoutManager = manager
-
-    binding.recycler.adapter = MainAdapter(flexboxLayoutManager(
+    val linear = FlexLinearLayoutManager(this)
+    val flexbox = flexboxLayoutManager(
       context = this,
       flexDirection = FlexDirection.ROW,
-      flexWrap = FlexWrap.WRAP
-    ))
-  }
-}
-
-class MainAdapter(manager: FlexboxLayoutManager) : GroupAdapter<ViewHolder>() {
-  init {
-    addAll(
-      listOf(
-        MainContainerItem(
-          manager,
-          ChipMainAdapter().apply {
-            updateChips(mockItems1)
-          })
-      )
+      justifyContent = JustifyContent.FLEX_START,
+      alignItems = AlignItems.FLEX_START
     )
+
+    binding.recycler.layoutManager = flexbox
+    binding.recycler.adapter = MainAdapter()
+
+    binding.floating.setOnClickListener {
+      if (binding.recycler.layoutManager == linear) {
+        binding.recycler.layoutManager = flexbox
+      } else {
+        binding.recycler.layoutManager = linear
+      }
+    }
   }
 }
 
-class ChipMainAdapter : GroupAdapter<ViewHolder>() {
-  fun updateChips(items: List<String>) {
-    addAll(items.map { MainItem(it) })
-  }
+class FlexLinearLayoutManager(
+  context: Context
+) : LinearLayoutManager(context, RecyclerView.HORIZONTAL, false) {
+  override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
+    FlexboxLayoutManager.LayoutParams(
+      ViewGroup.LayoutParams.WRAP_CONTENT,
+      ViewGroup.LayoutParams.WRAP_CONTENT
+    )
+
+  override fun generateLayoutParams(c: Context, attrs: AttributeSet): RecyclerView.LayoutParams =
+    FlexboxLayoutManager.LayoutParams(c, attrs)
 }
 
-class MainContainerItem(
-  private val layoutManager: FlexboxLayoutManager,
-  private val adapter: ChipMainAdapter
-) : BindableItem<MainContainerItemBinding>() {
-  override fun getLayout(): Int = R.layout.main_container_item
-
-  override fun bind(binding: MainContainerItemBinding, position: Int) {
+class MainAdapter : GroupAdapter<ViewHolder>() {
+  init {
+    addAll(mockItems1.map { MainItem(it) })
   }
 }
 
@@ -72,7 +74,7 @@ class MainItem(
   }
 }
 
-val mockItems1 = (100..180).map {
+val mockItems1 = (100..300).map {
   it.toString()
 }
 
