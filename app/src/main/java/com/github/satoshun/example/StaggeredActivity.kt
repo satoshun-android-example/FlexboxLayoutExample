@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.satoshun.example.databinding.StaggeredActBinding
+import com.github.satoshun.example.flexbox2.MainItem
+import com.github.satoshun.example.flexbox2.mockItems1
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 

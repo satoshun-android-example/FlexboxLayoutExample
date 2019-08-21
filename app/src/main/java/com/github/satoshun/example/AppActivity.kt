@@ -3,6 +3,7 @@ package com.github.satoshun.example
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.github.satoshun.example.flexbox.FlexboxActivity
 import kotlinx.android.synthetic.main.app_act.*
 
 class AppActivity : AppCompatActivity() {

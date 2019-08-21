@@ -1,4 +1,4 @@
-package com.github.satoshun.example
+package com.github.satoshun.example.flexbox2
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainContainerItemBinding
 import com.github.satoshun.example.databinding.MainItemBinding
@@ -16,7 +17,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
 
-class FlexboxActivity : AppCompatActivity() {
+class FlexboxActivity2 : AppCompatActivity() {
   private lateinit var binding: MainActBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,14 +67,6 @@ class MainContainerItem(
   override fun getLayout(): Int = R.layout.main_container_item
 
   override fun bind(binding: MainContainerItemBinding, position: Int) {
-    if (binding.recycler.adapter == null) {
-      binding.recycler.layoutManager = layoutManager
-      binding.recycler.adapter = adapter
-
-      binding.recycler.viewTreeObserver.addOnGlobalLayoutListener(
-        OnViewGlobalLayoutListener(binding.recycler)
-      )
-    }
   }
 }
 
@@ -98,10 +91,6 @@ class SubContainerItem(
         alignItems = AlignItems.FLEX_START
       )
       binding.recycler.adapter = subAdapter
-
-      binding.recycler.viewTreeObserver.addOnGlobalLayoutListener(
-        OnViewGlobalLayoutListener2(binding.recycler, mainManager)
-      )
     }
   }
 }
