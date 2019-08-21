@@ -16,7 +16,7 @@ class StaggeredActivity : AppCompatActivity() {
     binding = DataBindingUtil.setContentView(this, R.layout.staggered_act)
 
     binding.recycler.layoutManager = StaggeredGridLayoutManager(
-      2,
+      100,
       StaggeredGridLayoutManager.VERTICAL
     )
     binding.recycler.adapter = ChipStaggeredAdapter()
