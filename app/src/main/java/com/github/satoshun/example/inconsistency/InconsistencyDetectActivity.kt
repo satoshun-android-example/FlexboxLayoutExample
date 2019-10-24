@@ -33,19 +33,22 @@ class InconsistencyDetectActivity : AppCompatActivity() {
       )
     )
 
-    binding.root.postDelayed(5) {
-      adapter.updateNames(
-        listOf(
-          "2", "1", "3",
-          "2", "1", "3",
-          "2", "1", "3"
-        )
+    adapter.updateNames(
+      listOf(
+        "2", "1", "3",
+        "2", "1", "3",
+        "2", "1", "3",
+        "2", "1", "3",
+        "4"
       )
+    )
+
+    binding.root.postDelayed(1) {
       adapter.updateNames(
         listOf(
-          "2", "1", "3",
-          "2", "1", "3",
-          "2", "1", "3"
+          "1", "2", "3",
+          "1", "2", "3",
+          "1", "2", "3"
         )
       )
     }
