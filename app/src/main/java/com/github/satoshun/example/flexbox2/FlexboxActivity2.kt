@@ -3,18 +3,17 @@ package com.github.satoshun.example.flexbox2
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.satoshun.example.R
-import com.github.satoshun.example.databinding.*
+import com.github.satoshun.example.databinding.Flexbox2ActBinding
+import com.github.satoshun.example.databinding.MainItemBinding
 import com.google.android.flexbox.*
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.databinding.BindableItem
 
 class FlexboxActivity2 : AppCompatActivity() {
@@ -58,7 +57,7 @@ class FlexLinearLayoutManager(
     FlexboxLayoutManager.LayoutParams(c, attrs)
 }
 
-class MainAdapter : GroupAdapter<ViewHolder>() {
+class MainAdapter : GroupAdapter<GroupieViewHolder>() {
   init {
     addAll(mockItems1.map { MainItem(it) })
   }

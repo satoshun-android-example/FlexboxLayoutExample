@@ -14,7 +14,7 @@ import com.github.satoshun.example.databinding.MainItemBinding
 import com.github.satoshun.example.databinding.SubContainerItemBinding
 import com.google.android.flexbox.*
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.databinding.BindableItem
 
 class FlexboxActivity : AppCompatActivity() {
@@ -35,7 +35,7 @@ class FlexboxActivity : AppCompatActivity() {
   }
 }
 
-class MainAdapter(manager: FlexboxLayoutManager) : GroupAdapter<ViewHolder>() {
+class MainAdapter(manager: FlexboxLayoutManager) : GroupAdapter<GroupieViewHolder>() {
   init {
     addAll(
       listOf(
@@ -54,7 +54,7 @@ class MainAdapter(manager: FlexboxLayoutManager) : GroupAdapter<ViewHolder>() {
   }
 }
 
-class ChipMainAdapter : GroupAdapter<ViewHolder>() {
+class ChipMainAdapter : GroupAdapter<GroupieViewHolder>() {
   fun updateChips(items: List<String>) {
     addAll(items.map { MainItem(it) })
   }
@@ -78,7 +78,7 @@ class MainContainerItem(
   }
 }
 
-class ChipSubAdapter : GroupAdapter<ViewHolder>() {
+class ChipSubAdapter : GroupAdapter<GroupieViewHolder>() {
   fun updateChips(items: List<String>) {
     addAll(items.map { MainItem(it) })
   }

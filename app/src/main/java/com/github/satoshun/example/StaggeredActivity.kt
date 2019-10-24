@@ -8,7 +8,7 @@ import com.github.satoshun.example.databinding.StaggeredActBinding
 import com.github.satoshun.example.flexbox2.MainItem
 import com.github.satoshun.example.flexbox2.mockItems1
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 
 class StaggeredActivity : AppCompatActivity() {
   private lateinit var binding: StaggeredActBinding
@@ -25,7 +25,7 @@ class StaggeredActivity : AppCompatActivity() {
   }
 }
 
-private class ChipStaggeredAdapter : GroupAdapter<ViewHolder>() {
+private class ChipStaggeredAdapter : GroupAdapter<GroupieViewHolder>() {
   init {
     updateChips(mockItems1)
   }
