@@ -25,4 +25,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="staggered" />
+
+  <Button
+    android:id="@+id/already_attached"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="is already attached to a RecyclerView" />
 </LinearLayout>
