@@ -25,5 +25,6 @@
     <activity android:name=".flexbox2.FlexboxActivity2" />
     <activity android:name=".StaggeredActivity" />
     <activity android:name=".alreadyattached.LayoutManagerAlreadyAttachedActivity" />
+    <activity android:name=".inconsistency.InconsistencyDetectActivity" />
   </application>
 </manifest>

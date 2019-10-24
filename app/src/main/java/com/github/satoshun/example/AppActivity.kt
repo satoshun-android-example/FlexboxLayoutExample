@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.example.alreadyattached.LayoutManagerAlreadyAttachedActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
+import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
 import kotlinx.android.synthetic.main.app_act.*
 
 class AppActivity : AppCompatActivity() {
@@ -25,8 +26,8 @@ class AppActivity : AppCompatActivity() {
       startActivity(Intent(this, StaggeredActivity::class.java))
     }
 
-    already_attached.setOnClickListener {
-      startActivity(Intent(this, LayoutManagerAlreadyAttachedActivity::class.java))
+    inconsistency.setOnClickListener {
+      startActivity(Intent(this, InconsistencyDetectActivity::class.java))
     }
   }
 }
