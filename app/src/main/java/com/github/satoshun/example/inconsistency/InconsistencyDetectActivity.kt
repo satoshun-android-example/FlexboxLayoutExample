@@ -2,8 +2,9 @@ package com.github.satoshun.example.inconsistency
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.postDelayed
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.InconsistencyActBinding
 import com.github.satoshun.example.databinding.NameItemBinding
@@ -17,7 +18,10 @@ class InconsistencyDetectActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.inconsistency_act)
-    binding.recycler.layoutManager = LinearLayoutManager(this)
+    binding.recycler.layoutManager = StaggeredGridLayoutManager(
+      2,
+      StaggeredGridLayoutManager.HORIZONTAL
+    )
     val adapter = DetectAdapter()
     binding.recycler.adapter = adapter
 
@@ -29,13 +33,22 @@ class InconsistencyDetectActivity : AppCompatActivity() {
       )
     )
 
-    adapter.updateNames(
-      listOf(
-        "2", "1", "3",
-        "2", "1", "3",
-        "2", "1", "3"
+    binding.root.postDelayed(5) {
+      adapter.updateNames(
+        listOf(
+          "2", "1", "3",
+          "2", "1", "3",
+          "2", "1", "3"
+        )
       )
-    )
+      adapter.updateNames(
+        listOf(
+          "2", "1", "3",
+          "2", "1", "3",
+          "2", "1", "3"
+        )
+      )
+    }
   }
 }
 
