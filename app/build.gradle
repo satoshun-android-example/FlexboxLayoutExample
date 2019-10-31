@@ -47,6 +47,15 @@ dependencies {
   implementation GROUPIE
   implementation GROUPIE_DATABINDING
 
+  implementation COROUTINE
+  implementation UI_COROUTINE
+
+  implementation ACTIVITYX
+  implementation FRAGMENTX
+
+  implementation VIEWMODEL
+  implementation LIVEDATA
+
   testImplementation JUNIT
 
   androidTestImplementation TEST_RUNNER
