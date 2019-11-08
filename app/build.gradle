@@ -55,6 +55,7 @@ dependencies {
 
   implementation VIEWMODEL
   implementation LIVEDATA
+  implementation LIFECYCLE_RUNTIME
 
   testImplementation JUNIT
 

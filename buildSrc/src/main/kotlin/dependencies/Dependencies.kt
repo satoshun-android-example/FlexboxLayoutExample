@@ -1,8 +1,8 @@
 package dependencies
 
-const val COMPILE_SDK = 28
+const val COMPILE_SDK = 29
 const val MIN_SDK = 21
-const val TARGET_SDK = 28
+const val TARGET_SDK = 29
 
 private const val VKOTLIN = "1.3.50"
 private const val VNAVIGATION = "1.0.0"
@@ -32,21 +32,22 @@ const val CONTENTPAGER = "androidx.contentpager:contentpager:1.0.0-rc01"
 const val WEBKIT = "androidx.webkit:webkit:1.0.0"
 const val MEDIA2 = "androidx.media2:media2:1.0.0-alpha04"
 
-const val MATERIAL = "com.google.android.material:material:1.1.0-beta01"
+const val MATERIAL = "com.google.android.material:material:1.1.0-beta02"
 const val PAGING = "androidx.paging:paging-runtime:2.1.0"
 const val BROWSER = "androidx.browser:browser:1.0.0"
 const val NAVIGATION = "android.arch.navigation:navigation-fragment-ktx:$VNAVIGATION"
 const val NAVIGATION_UI = "android.arch.navigation:navigation-ui-ktx:$VNAVIGATION"
 
-private const val VROOM = "2.1.0-alpha04"
+private const val VROOM = "2.2.1"
 const val ROOM_COMMON = "androidx.room:room-common:$VROOM"
 const val ROOM_RUNTIME = "androidx.room:room-runtime:$VROOM"
 const val ROOM_COMPILER = "androidx.room:room-compiler:$VROOM"
 
-const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01"
-const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc01"
-const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
-const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03"
+const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
+const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.1.0"
+const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.1.0"
+const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
 
 const val BIOMETRIC = "androidx.biometric:biometric:1.0.0-alpha03"
 
