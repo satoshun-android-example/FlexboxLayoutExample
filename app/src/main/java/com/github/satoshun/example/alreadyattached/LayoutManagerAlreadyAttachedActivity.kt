@@ -2,9 +2,7 @@ package com.github.satoshun.example.alreadyattached
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.AlreadyAttachedActBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -14,7 +12,8 @@ class LayoutManagerAlreadyAttachedActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.already_attached_act)
+    binding = AlreadyAttachedActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     run {
       val layoutManager = LinearLayoutManager(this)

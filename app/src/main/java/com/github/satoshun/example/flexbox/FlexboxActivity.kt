@@ -5,33 +5,39 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainContainerItemBinding
 import com.github.satoshun.example.databinding.MainItemBinding
 import com.github.satoshun.example.databinding.SubContainerItemBinding
-import com.google.android.flexbox.*
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.xwray.groupie.Item
 
 class FlexboxActivity : AppCompatActivity() {
   private lateinit var binding: MainActBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.main_act)
+    binding = MainActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     val manager = LinearLayoutManager(this)
     binding.recycler.layoutManager = manager
 
-    binding.recycler.adapter = MainAdapter(flexboxLayoutManager(
-      context = this,
-      flexDirection = FlexDirection.ROW,
-      flexWrap = FlexWrap.WRAP
-    ))
+    binding.recycler.adapter = MainAdapter(
+      flexboxLayoutManager(
+        context = this,
+        flexDirection = FlexDirection.ROW,
+        flexWrap = FlexWrap.WRAP
+      )
+    )
   }
 }
 
@@ -63,10 +69,11 @@ class ChipMainAdapter : GroupAdapter<GroupieViewHolder>() {
 class MainContainerItem(
   private val layoutManager: FlexboxLayoutManager,
   private val adapter: ChipMainAdapter
-) : BindableItem<MainContainerItemBinding>() {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.main_container_item
 
-  override fun bind(binding: MainContainerItemBinding, position: Int) {
+  override fun bind(holder: GroupieViewHolder, position: Int) {
+    val binding = MainContainerItemBinding.bind(holder.itemView)
     if (binding.recycler.adapter == null) {
       binding.recycler.layoutManager = layoutManager
       binding.recycler.adapter = adapter
@@ -87,10 +94,11 @@ class ChipSubAdapter : GroupAdapter<GroupieViewHolder>() {
 class SubContainerItem(
   private val mainManager: FlexboxLayoutManager,
   private val subAdapter: ChipSubAdapter
-) : BindableItem<SubContainerItemBinding>() {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.sub_container_item
 
-  override fun bind(binding: SubContainerItemBinding, position: Int) {
+  override fun bind(holder: GroupieViewHolder, position: Int) {
+    val binding = SubContainerItemBinding.bind(holder.itemView)
     if (binding.recycler.adapter == null) {
       binding.recycler.layoutManager = flexboxLayoutManager(
         context = binding.root.context,
@@ -107,13 +115,13 @@ class SubContainerItem(
   }
 }
 
-
 class MainItem(
   private val title: String
-) : BindableItem<MainItemBinding>() {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.main_item
 
-  override fun bind(binding: MainItemBinding, position: Int) {
+  override fun bind(holder: GroupieViewHolder, position: Int) {
+    val binding = MainItemBinding.bind(holder.itemView)
     binding.chip.text = title
   }
 }

@@ -26,5 +26,7 @@
     <activity android:name=".StaggeredActivity" />
     <activity android:name=".alreadyattached.LayoutManagerAlreadyAttachedActivity" />
     <activity android:name=".inconsistency.InconsistencyDetectActivity" />
+    <activity android:name=".diff.DiffActivity" />
+    <activity android:name=".diffgroupie.DiffGroupieActivity" />
   </application>
 </manifest>

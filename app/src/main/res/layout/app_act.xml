@@ -37,4 +37,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="inconsistency" />
+
+  <Button
+    android:id="@+id/diff"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="diff" />
+
+  <Button
+    android:id="@+id/diff_groupie"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="diff Groupie" />
 </LinearLayout>

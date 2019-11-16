@@ -2,7 +2,6 @@ package com.github.satoshun.example
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.satoshun.example.databinding.StaggeredActBinding
 import com.github.satoshun.example.flexbox2.MainItem
@@ -15,7 +14,8 @@ class StaggeredActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.staggered_act)
+    binding = StaggeredActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     binding.recycler.layoutManager = StaggeredGridLayoutManager(
       100,
