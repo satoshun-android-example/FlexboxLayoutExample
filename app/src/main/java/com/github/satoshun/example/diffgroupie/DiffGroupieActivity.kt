@@ -40,7 +40,11 @@ class DiffAdapter : GroupAdapter<GroupieViewHolder>() {
 
   fun update() {
     update(
-      (0..10).map { BasicItem() }
+      listOf(
+        BasicItem(),
+        BasicIdItem(0.toLong()),
+        BasicIdSameContentsItem(1.toLong())
+      )
     )
   }
 }
@@ -49,6 +53,22 @@ class BasicItem : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.basic_item
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    println("BasicItem bind")
+    println("ID !=, equals != ")
+  }
+}
+
+class BasicIdItem(id: Long) : Item<GroupieViewHolder>(id) {
+  override fun getLayout(): Int = R.layout.basic_item
+
+  override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    println("ID ==, equals !=")
+  }
+}
+
+data class BasicIdSameContentsItem(private val _id: Long) : Item<GroupieViewHolder>(_id) {
+  override fun getLayout(): Int = R.layout.basic_item
+
+  override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    println("ID ==, equals ==")
   }
 }
