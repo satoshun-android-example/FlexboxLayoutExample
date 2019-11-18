@@ -3,21 +3,22 @@ package com.github.satoshun.example.inconsistency
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.postDelayed
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.InconsistencyActBinding
 import com.github.satoshun.example.databinding.NameItemBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.xwray.groupie.Item
 
 class InconsistencyDetectActivity : AppCompatActivity() {
   private lateinit var binding: InconsistencyActBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.inconsistency_act)
+    binding = InconsistencyActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
     binding.recycler.layoutManager = StaggeredGridLayoutManager(
       2,
       StaggeredGridLayoutManager.HORIZONTAL
@@ -63,10 +64,11 @@ class DetectAdapter : GroupAdapter<GroupieViewHolder>() {
 
 data class NameItem(
   private val name: String
-) : BindableItem<NameItemBinding>(name.hashCode().toLong()) {
+) : Item<GroupieViewHolder>(name.hashCode().toLong()) {
   override fun getLayout(): Int = R.layout.name_item
 
-  override fun bind(binding: NameItemBinding, position: Int) {
+  override fun bind(holder: GroupieViewHolder, position: Int) {
+    val binding = NameItemBinding.bind(holder.itemView)
     binding.title.text = name
   }
 }

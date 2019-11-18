@@ -22,7 +22,7 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-  dataBinding {
+  viewBinding {
     enabled = true
   }
 }
@@ -45,7 +45,6 @@ dependencies {
   implementation FLEXBOX
 
   implementation GROUPIE
-  implementation GROUPIE_DATABINDING
 
   implementation COROUTINE
   implementation UI_COROUTINE

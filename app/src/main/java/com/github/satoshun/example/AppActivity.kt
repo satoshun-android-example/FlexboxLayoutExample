@@ -3,7 +3,8 @@ package com.github.satoshun.example
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.github.satoshun.example.alreadyattached.LayoutManagerAlreadyAttachedActivity
+import com.github.satoshun.example.diff.DiffActivity
+import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
@@ -28,6 +29,14 @@ class AppActivity : AppCompatActivity() {
 
     inconsistency.setOnClickListener {
       startActivity(Intent(this, InconsistencyDetectActivity::class.java))
+    }
+
+    diff.setOnClickListener {
+      startActivity(Intent(this, DiffActivity::class.java))
+    }
+
+    diff_groupie.setOnClickListener {
+      startActivity(Intent(this, DiffGroupieActivity::class.java))
     }
   }
 }

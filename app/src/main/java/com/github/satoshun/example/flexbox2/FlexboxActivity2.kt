@@ -5,23 +5,27 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.Flexbox2ActBinding
-import com.github.satoshun.example.databinding.MainItemBinding
-import com.google.android.flexbox.*
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
+import com.google.android.material.chip.Chip
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.databinding.BindableItem
+import com.xwray.groupie.Item
 
 class FlexboxActivity2 : AppCompatActivity() {
   private lateinit var binding: Flexbox2ActBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.flexbox2_act)
+    binding = Flexbox2ActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     val linear = FlexLinearLayoutManager(this)
     val flexbox = flexboxLayoutManager(
@@ -65,11 +69,11 @@ class MainAdapter : GroupAdapter<GroupieViewHolder>() {
 
 class MainItem(
   private val title: String
-) : BindableItem<MainItemBinding>() {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.main_item
 
-  override fun bind(binding: MainItemBinding, position: Int) {
-    binding.chip.text = title
+  override fun bind(holder: GroupieViewHolder, position: Int) {
+    holder.itemView.findViewById<Chip>(R.id.chip).text = title
   }
 }
 
