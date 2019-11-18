@@ -55,4 +55,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="CardView" />
+
+  <Button
+    android:id="@+id/card_views_view_group"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="CardViews ViewGroup" />
 </LinearLayout>

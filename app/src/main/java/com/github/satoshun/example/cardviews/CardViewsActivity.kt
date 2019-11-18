@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.CardViewItemBinding
 import com.github.satoshun.example.databinding.CardViewsActBinding
-import com.github.satoshun.example.databinding.DiffActBinding
 import com.github.satoshun.example.databinding.TextViewItemBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -23,7 +22,7 @@ class CardViewsActivity : AppCompatActivity() {
     binding.recycler.layoutManager = LinearLayoutManager(this)
     binding.recycler.adapter = GroupAdapter<GroupieViewHolder>().apply {
       addAll(
-        (0..100).map { TextViewItem() }
+        (0..100).map { CardViewItem() }
       )
     }
   }

@@ -29,5 +29,6 @@
     <activity android:name=".diff.DiffActivity" />
     <activity android:name=".diffgroupie.DiffGroupieActivity" />
     <activity android:name=".cardviews.CardViewsActivity" />
+    <activity android:name=".cardviewsviewgroup.CardViewsViewGroupActivity" />
   </application>
 </manifest>

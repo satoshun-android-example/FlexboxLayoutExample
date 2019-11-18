@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.example.cardviews.CardViewsActivity
+import com.github.satoshun.example.cardviewsviewgroup.CardViewsViewGroupActivity
 import com.github.satoshun.example.databinding.AppActBinding
 import com.github.satoshun.example.diff.DiffActivity
 import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
@@ -45,6 +46,10 @@ class AppActivity : AppCompatActivity() {
 
     binding.cardViews.setOnClickListener {
       startActivity(Intent(this, CardViewsActivity::class.java))
+    }
+
+    binding.cardViewsViewGroup.setOnClickListener {
+      startActivity(Intent(this, CardViewsViewGroupActivity::class.java))
     }
   }
 }
