@@ -49,4 +49,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="diff Groupie" />
+
+  <Button
+    android:id="@+id/card_views"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="CardView" />
 </LinearLayout>

@@ -3,40 +3,48 @@ package com.github.satoshun.example
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.github.satoshun.example.cardviews.CardViewsActivity
+import com.github.satoshun.example.databinding.AppActBinding
 import com.github.satoshun.example.diff.DiffActivity
 import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
-import kotlinx.android.synthetic.main.app_act.*
 
 class AppActivity : AppCompatActivity() {
+  private lateinit var binding: AppActBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.app_act)
+    binding = AppActBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    main1.setOnClickListener {
+    binding.main1.setOnClickListener {
       startActivity(Intent(this, FlexboxActivity::class.java))
     }
 
-    flexbox2.setOnClickListener {
+    binding.flexbox2.setOnClickListener {
       startActivity(Intent(this, FlexboxActivity2::class.java))
     }
 
-    main2.setOnClickListener {
+    binding.main2.setOnClickListener {
       startActivity(Intent(this, StaggeredActivity::class.java))
     }
 
-    inconsistency.setOnClickListener {
+    binding.inconsistency.setOnClickListener {
       startActivity(Intent(this, InconsistencyDetectActivity::class.java))
     }
 
-    diff.setOnClickListener {
+    binding.diff.setOnClickListener {
       startActivity(Intent(this, DiffActivity::class.java))
     }
 
-    diff_groupie.setOnClickListener {
+    binding.diffGroupie.setOnClickListener {
       startActivity(Intent(this, DiffGroupieActivity::class.java))
+    }
+
+    binding.cardViews.setOnClickListener {
+      startActivity(Intent(this, CardViewsActivity::class.java))
     }
   }
 }
