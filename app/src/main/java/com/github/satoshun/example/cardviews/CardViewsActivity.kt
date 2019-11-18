@@ -7,6 +7,7 @@ import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.CardViewItemBinding
 import com.github.satoshun.example.databinding.CardViewsActBinding
 import com.github.satoshun.example.databinding.DiffActBinding
+import com.github.satoshun.example.databinding.TextViewItemBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -22,9 +23,17 @@ class CardViewsActivity : AppCompatActivity() {
     binding.recycler.layoutManager = LinearLayoutManager(this)
     binding.recycler.adapter = GroupAdapter<GroupieViewHolder>().apply {
       addAll(
-        (0..100).map { CardViewItem() }
+        (0..100).map { TextViewItem() }
       )
     }
+  }
+}
+
+class TextViewItem : Item<GroupieViewHolder>() {
+  override fun getLayout(): Int = R.layout.text_view_item
+
+  override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    val binding = TextViewItemBinding.bind(viewHolder.itemView)
   }
 }
 
