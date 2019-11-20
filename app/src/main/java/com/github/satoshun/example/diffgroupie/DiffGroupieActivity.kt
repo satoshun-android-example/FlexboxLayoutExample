@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.DiffActBinding
 import com.xwray.groupie.GroupAdapter
@@ -21,6 +22,9 @@ class DiffGroupieActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.recycler.layoutManager = LinearLayoutManager(this)
+    binding.recycler.itemAnimator = (binding.recycler.itemAnimator as SimpleItemAnimator).apply {
+      supportsChangeAnimations = false
+    }
     val adapter = DiffAdapter()
     binding.recycler.adapter = adapter
 
@@ -28,6 +32,7 @@ class DiffGroupieActivity : AppCompatActivity() {
       while (true) {
         delay(3000)
         adapter.update()
+//        adapter.changedPayloads()
       }
     }
   }
@@ -42,10 +47,14 @@ class DiffAdapter : GroupAdapter<GroupieViewHolder>() {
     update(
       listOf(
         BasicItem(),
-        BasicIdItem(0.toLong()),
-        BasicIdSameContentsItem(1.toLong())
+        BasicIdItem(3.toLong()),
+        BasicIdSameContentsItem(4.toLong())
       )
     )
+  }
+
+  fun changedPayloads() {
+    getItem(0).notifyChanged(1)
   }
 }
 
@@ -53,7 +62,7 @@ class BasicItem : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.basic_item
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    println("ID !=, equals != ")
+    println("${viewHolder.itemView.hashCode()}: ID !=, equals != ")
   }
 }
 
@@ -61,7 +70,7 @@ class BasicIdItem(id: Long) : Item<GroupieViewHolder>(id) {
   override fun getLayout(): Int = R.layout.basic_item
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    println("ID ==, equals !=")
+    println("${viewHolder.itemView.hashCode()}: ID ==, equals !=")
   }
 }
 
@@ -69,6 +78,6 @@ data class BasicIdSameContentsItem(private val _id: Long) : Item<GroupieViewHold
   override fun getLayout(): Int = R.layout.basic_item
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    println("ID ==, equals ==")
+    println("${viewHolder.itemView.hashCode()}: ID ==, equals ==")
   }
 }
