@@ -22,17 +22,18 @@ class DiffGroupieActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.recycler.layoutManager = LinearLayoutManager(this)
-    binding.recycler.itemAnimator = (binding.recycler.itemAnimator as SimpleItemAnimator).apply {
-      supportsChangeAnimations = false
-    }
+    binding.recycler.itemAnimator = (binding.recycler.itemAnimator as SimpleItemAnimator)
+//      .apply {
+//        supportsChangeAnimations = false
+//      }
     val adapter = DiffAdapter()
     binding.recycler.adapter = adapter
 
     lifecycleScope.launch {
       while (true) {
-        delay(3000)
-        adapter.update()
-//        adapter.changedPayloads()
+        delay(1500)
+//        adapter.update()
+        adapter.changedPayloads()
       }
     }
   }
@@ -46,15 +47,16 @@ class DiffAdapter : GroupAdapter<GroupieViewHolder>() {
   fun update() {
     update(
       listOf(
-        BasicItem(),
-        BasicIdItem(3.toLong()),
-        BasicIdSameContentsItem(4.toLong())
+//        BasicIdItem(3)
+        BasicIdItem(3.toLong())
+//        BasicIdSameContentsItem(4.toLong())
       )
     )
   }
 
   fun changedPayloads() {
-    getItem(0).notifyChanged(1)
+//    getItem(0).notifyChanged()
+    update()
   }
 }
 
@@ -71,6 +73,10 @@ class BasicIdItem(id: Long) : Item<GroupieViewHolder>(id) {
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
     println("${viewHolder.itemView.hashCode()}: ID ==, equals !=")
+  }
+
+  override fun getChangePayload(newItem: Item<*>): Any? {
+    return newItem.id
   }
 }
 
