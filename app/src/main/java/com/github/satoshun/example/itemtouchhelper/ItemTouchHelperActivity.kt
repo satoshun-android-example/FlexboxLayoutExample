@@ -44,6 +44,15 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         return true
       }
 
+      override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        super.onSelectedChanged(viewHolder, actionState)
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+          viewHolder?.itemView?.elevation = 12f
+        } else {
+          viewHolder?.itemView?.elevation = 0f
+        }
+      }
+
       override fun isLongPressDragEnabled(): Boolean {
         return false
       }
