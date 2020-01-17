@@ -15,6 +15,7 @@ import com.xwray.groupie.Item
 
 class ItemTouchHelperActivity : AppCompatActivity() {
   private lateinit var binding: ItemTouchHelperActBinding
+  private lateinit var touchHelper: ItemTouchHelper
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -22,13 +23,17 @@ class ItemTouchHelperActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.recycler.layoutManager = LinearLayoutManager(this)
-    val items = (0..100).map { TextViewItem() }.toMutableList()
+    val items = (0..100).map {
+      TextViewItem {
+        touchHelper.startDrag(it)
+      }
+    }.toMutableList()
     val adapter = GroupAdapter<GroupieViewHolder>().apply {
       addAll(items)
     }
     binding.recycler.adapter = adapter
 
-    val touchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+    touchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
       override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         return makeMovementFlags(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0)
       }
@@ -39,6 +44,14 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         return true
       }
 
+      override fun isLongPressDragEnabled(): Boolean {
+        return false
+      }
+
+      override fun isItemViewSwipeEnabled(): Boolean {
+        return false
+      }
+
       override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
       }
     })
@@ -46,12 +59,16 @@ class ItemTouchHelperActivity : AppCompatActivity() {
   }
 }
 
-class TextViewItem : Item<GroupieViewHolder>() {
+class TextViewItem(val callback: (GroupieViewHolder) -> Unit) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = R.layout.text_view_item
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
     val binding = TextViewItemBinding.bind(viewHolder.itemView)
     binding.title.text = "$position"
+    binding.button.setOnLongClickListener {
+      callback(viewHolder)
+      true
+    }
   }
 }
 
