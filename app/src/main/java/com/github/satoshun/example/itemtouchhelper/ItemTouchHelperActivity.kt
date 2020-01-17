@@ -1,5 +1,6 @@
 package com.github.satoshun.example.itemtouchhelper
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -47,10 +48,13 @@ class ItemTouchHelperActivity : AppCompatActivity() {
       override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
         super.onSelectedChanged(viewHolder, actionState)
         if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-          viewHolder?.itemView?.elevation = 12f
-        } else {
-          viewHolder?.itemView?.elevation = 0f
+          viewHolder?.itemView?.setBackgroundColor(Color.BLUE)
         }
+      }
+
+      override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        super.clearView(recyclerView, viewHolder)
+        viewHolder.itemView.setBackgroundColor(0)
       }
 
       override fun isLongPressDragEnabled(): Boolean {
