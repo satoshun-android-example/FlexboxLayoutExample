@@ -11,6 +11,7 @@ import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
+import com.github.satoshun.example.itemtouchhelper.ItemTouchHelperActivity
 
 class AppActivity : AppCompatActivity() {
   private lateinit var binding: AppActBinding
@@ -50,6 +51,10 @@ class AppActivity : AppCompatActivity() {
 
     binding.cardViewsViewGroup.setOnClickListener {
       startActivity(Intent(this, CardViewsViewGroupActivity::class.java))
+    }
+
+    binding.touchHelper.setOnClickListener {
+      startActivity(Intent(this, ItemTouchHelperActivity::class.java))
     }
   }
 }

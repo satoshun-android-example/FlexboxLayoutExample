@@ -3,7 +3,6 @@ package com.github.satoshun.example.cardviewsviewgroup
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.satoshun.example.cardviews.CardViewItem
 import com.github.satoshun.example.databinding.CardViewsActBinding
 import com.github.satoshun.example.databinding.CardViewsViewGroupActBinding
 import com.xwray.groupie.GroupAdapter

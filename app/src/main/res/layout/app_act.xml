@@ -61,4 +61,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="CardViews ViewGroup" />
+
+  <Button
+    android:id="@+id/touch_helper"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="ItemTouchHelper" />
 </LinearLayout>
