@@ -12,6 +12,7 @@ import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
 import com.github.satoshun.example.itemtouchhelper.ItemTouchHelperActivity
+import com.github.satoshun.example.mergeadapter.MergeAdapterActivity
 import com.github.satoshun.example.mergeadapter.groupie.GroupieMergeAdapterActivity
 
 class AppActivity : AppCompatActivity() {
@@ -23,6 +24,10 @@ class AppActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.mergeAdapter.setOnClickListener {
+      startActivity(Intent(this, MergeAdapterActivity::class.java))
+    }
+
+    binding.groupieMergeAdapter.setOnClickListener {
       startActivity(Intent(this, GroupieMergeAdapterActivity::class.java))
     }
 

@@ -21,6 +21,7 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".mergeadapter.MergeAdapterActivity" />
     <activity android:name=".mergeadapter.groupie.GroupieMergeAdapterActivity" />
     <activity android:name=".flexbox.FlexboxActivity" />
     <activity android:name=".flexbox2.FlexboxActivity2" />
