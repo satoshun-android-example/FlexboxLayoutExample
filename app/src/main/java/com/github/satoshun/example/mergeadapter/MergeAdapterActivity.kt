@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.satoshun.example.R
@@ -24,12 +26,30 @@ class MergeAdapterActivity : AppCompatActivity() {
     binding.recycler.layoutManager = manager
     val mergeAdapter = MergeAdapter()
     mergeAdapter.addAdapter(ChipItemAdapter(listOf("hoge", "test")))
+    mergeAdapter.addAdapter(ChipItemAdapter2().apply { submitList(listOf("fuga", "TOM")) })
     binding.recycler.adapter = mergeAdapter
   }
 }
 
 class ChipItemAdapter(items: List<String>) :
   ListViewTypeAdapter<String>(items, R.layout.main_item) {
+  override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: String, position: Int) {
+    val binding = MainItemBinding.bind(holder.itemView)
+    binding.chip.text = item
+  }
+}
+
+val DIFF_CALLBACK = object : DiffUtil.ItemCallback<String>() {
+  override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+    return oldItem == newItem
+  }
+
+  override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+    return oldItem == newItem
+  }
+}
+
+class ChipItemAdapter2 : ListViewTypeAdapter2<String>(R.layout.main_item, DIFF_CALLBACK) {
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: String, position: Int) {
     val binding = MainItemBinding.bind(holder.itemView)
     binding.chip.text = item
@@ -51,6 +71,23 @@ abstract class ListViewTypeAdapter<T>(
 
   final override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     onBindViewHolder(holder, items[position], position)
+  }
+
+  abstract fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: T, position: Int)
+}
+
+abstract class ListViewTypeAdapter2<T>(
+  @LayoutRes private val layoutId: Int,
+  diffCallback: DiffUtil.ItemCallback<T>
+) : ListAdapter<T, RecyclerView.ViewHolder>(diffCallback) {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    return object : RecyclerView.ViewHolder(
+      LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+    ) {}
+  }
+
+  final override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    onBindViewHolder(holder, getItem(position), position)
   }
 
   abstract fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: T, position: Int)
