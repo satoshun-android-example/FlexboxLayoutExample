@@ -49,7 +49,7 @@ val DIFF_CALLBACK = object : DiffUtil.ItemCallback<String>() {
   }
 }
 
-class ChipItemAdapter2 : ListViewTypeAdapter2<String>(R.layout.main_item, DIFF_CALLBACK) {
+class ChipItemAdapter2 : ItemAdapter<String>(R.layout.main_item, DIFF_CALLBACK) {
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: String, position: Int) {
     val binding = MainItemBinding.bind(holder.itemView)
     binding.chip.text = item
@@ -76,11 +76,11 @@ abstract class ListViewTypeAdapter<T>(
   abstract fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: T, position: Int)
 }
 
-abstract class ListViewTypeAdapter2<T>(
+abstract class ItemAdapter<T>(
   @LayoutRes private val layoutId: Int,
   diffCallback: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, RecyclerView.ViewHolder>(diffCallback) {
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+  final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return object : RecyclerView.ViewHolder(
       LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {}
