@@ -43,6 +43,7 @@ dependencies {
 
   implementation FLEXBOX
 
+  implementation RECYCLERVIEW
   implementation GROUPIE
 
   implementation COROUTINE

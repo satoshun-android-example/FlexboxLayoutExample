@@ -12,6 +12,7 @@ import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
 import com.github.satoshun.example.itemtouchhelper.ItemTouchHelperActivity
+import com.github.satoshun.example.mergeadapter.groupie.GroupieMergeAdapterActivity
 
 class AppActivity : AppCompatActivity() {
   private lateinit var binding: AppActBinding
@@ -20,6 +21,10 @@ class AppActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AppActBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.mergeAdapter.setOnClickListener {
+      startActivity(Intent(this, GroupieMergeAdapterActivity::class.java))
+    }
 
     binding.main1.setOnClickListener {
       startActivity(Intent(this, FlexboxActivity::class.java))
