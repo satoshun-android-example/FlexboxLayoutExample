@@ -5,16 +5,21 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
-class Item(
+@Suppress("FunctionName")
+fun Item(
+  layoutId: Int,
+  bind: RecyclerView.ViewHolder.(position: Int) -> Unit
+): Item = Item(
+  layoutId,
+  bind,
+  null
+)
+
+open class Item(
   @LayoutRes private val layoutId: Int,
   private val bind: RecyclerView.ViewHolder.(position: Int) -> Unit,
   private val bindPayloads: (RecyclerView.ViewHolder.(position: Int, payloads: MutableList<Any>) -> Unit)?
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-  constructor(layoutId: Int, bind: RecyclerView.ViewHolder.(position: Int) -> Unit) : this(
-    layoutId,
-    bind,
-    null
-  )
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return MergerViewHolder(
@@ -39,6 +44,10 @@ class Item(
     } else {
       holder.bindPayloads(position, payloads)
     }
+  }
+
+  override fun getItemViewType(position: Int): Int {
+    return layoutId
   }
 
   override fun getItemCount(): Int = 1

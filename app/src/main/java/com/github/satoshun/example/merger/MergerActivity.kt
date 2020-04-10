@@ -33,9 +33,9 @@ class MergerActivity : AppCompatActivity() {
     val data = listOf("sato", "shun", "desu")
     mergeAdapter.addAdapter(
       ListItem(
-        data,
-        R.layout.main_item,
-        { a, b -> a == b }
+        initialData = data,
+        layoutId = R.layout.main_item,
+        areItemsTheSame = { a, b -> a == b }
       ) { text, _ ->
         val mainItem = MainItemBinding.bind(itemView)
         mainItem.chip.text = text

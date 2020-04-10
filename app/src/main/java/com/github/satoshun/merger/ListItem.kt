@@ -28,9 +28,9 @@ fun <T : Any> ListItem(
 ): ListItem<T> = ListItem(layoutId, areItemsTheSame, bind)
   .apply { submitList(initialData) }
 
-class ListItem<T : Any>(
+open class ListItem<T : Any>(
   @LayoutRes private val layoutId: Int,
-  private val diffCallback: DiffUtil.ItemCallback<T>,
+  diffCallback: DiffUtil.ItemCallback<T>,
   private val bind: RecyclerView.ViewHolder.(data: T, position: Int) -> Unit,
   private val bindPayloads: (RecyclerView.ViewHolder.(data: T, position: Int, payloads: MutableList<Any>) -> Unit)?
 ) : ListAdapter<T, RecyclerView.ViewHolder>(diffCallback) {
@@ -56,5 +56,9 @@ class ListItem<T : Any>(
     } else {
       holder.bindPayloads(getItem(position), position, payloads)
     }
+  }
+
+  override fun getItemViewType(position: Int): Int {
+    return layoutId
   }
 }
