@@ -1,7 +1,6 @@
 package com.github.satoshun.merger
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +10,12 @@ class Item(
   private val bind: RecyclerView.ViewHolder.(position: Int) -> Unit,
   private val bindPayloads: (RecyclerView.ViewHolder.(position: Int, payloads: MutableList<Any>) -> Unit)?
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+  constructor(layoutId: Int, bind: RecyclerView.ViewHolder.(position: Int) -> Unit) : this(
+    layoutId,
+    bind,
+    null
+  )
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return MergerViewHolder(
       LayoutInflater
@@ -38,5 +43,3 @@ class Item(
 
   override fun getItemCount(): Int = 1
 }
-
-class MergerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
