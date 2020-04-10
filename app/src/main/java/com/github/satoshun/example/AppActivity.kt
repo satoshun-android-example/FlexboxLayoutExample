@@ -14,6 +14,7 @@ import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
 import com.github.satoshun.example.itemtouchhelper.ItemTouchHelperActivity
 import com.github.satoshun.example.mergeadapter.MergeAdapterActivity
 import com.github.satoshun.example.mergeadapter.groupie.GroupieMergeAdapterActivity
+import com.github.satoshun.example.merger.MergerActivity
 
 class AppActivity : AppCompatActivity() {
   private lateinit var binding: AppActBinding
@@ -22,6 +23,10 @@ class AppActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AppActBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.merger.setOnClickListener {
+      startActivity(Intent(this, MergerActivity::class.java))
+    }
 
     binding.mergeAdapter.setOnClickListener {
       startActivity(Intent(this, MergeAdapterActivity::class.java))
