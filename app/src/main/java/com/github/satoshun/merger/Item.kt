@@ -20,7 +20,7 @@ class Item(
   @LayoutRes private val layoutId: Int,
   private val bind: RecyclerView.ViewHolder.(position: Int) -> Unit,
   private val bindPayloads: (RecyclerView.ViewHolder.(position: Int, payloads: MutableList<Any>) -> Unit)?
-) : ListAdapter<Int, RecyclerView.ViewHolder>(MergerDiffCallback(areContentsTheSame = ::negate)) {
+) : ListAdapter<Int, RecyclerView.ViewHolder>(MergerDiffCallback()) {
   init {
     submitList(listOf(layoutId))
   }

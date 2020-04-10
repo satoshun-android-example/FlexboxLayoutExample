@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 @Suppress("FunctionName")
 fun <T : Any> ListItem(
   layoutId: Int,
-  areItemsTheSame: (oldItem: T, newItem: T) -> Boolean,
+  sameItemKey: (T) -> Any,
   bind: RecyclerView.ViewHolder.(data: T, position: Int) -> Unit
 ): ListItem<T> = ListItem(
   layoutId,
-  MergerDiffCallback(areItemsTheSame),
+  MergerDiffCallback(sameItemKey),
   bind,
   null
 )
@@ -23,9 +23,9 @@ fun <T : Any> ListItem(
 fun <T : Any> ListItem(
   initialData: List<T>,
   layoutId: Int,
-  areItemsTheSame: (oldItem: T, newItem: T) -> Boolean,
+  sameItemKey: (T) -> Any,
   bind: RecyclerView.ViewHolder.(data: T, position: Int) -> Unit
-): ListItem<T> = ListItem(layoutId, areItemsTheSame, bind)
+): ListItem<T> = ListItem(layoutId, sameItemKey, bind)
   .apply { submitList(initialData) }
 
 open class ListItem<T : Any>(

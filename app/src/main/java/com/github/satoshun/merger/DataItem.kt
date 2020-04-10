@@ -10,20 +10,23 @@ import androidx.recyclerview.widget.RecyclerView
 fun <T : Any> DataItem(
   data: T,
   layoutId: Int,
+  sameItemKey: (T) -> Any = ::tautology,
   bind: RecyclerView.ViewHolder.(T, Int) -> Unit
 ): DataItem<T> = DataItem(
   data,
   layoutId,
-  bind,
-  null
+  sameItemKey = sameItemKey,
+  bind = bind,
+  bindPayloads = null
 )
 
 class DataItem<T : Any>(
   private val data: T,
   @LayoutRes private val layoutId: Int,
+  sameItemKey: (T) -> Any = ::tautology,
   private val bind: RecyclerView.ViewHolder.(T, Int) -> Unit,
   private val bindPayloads: (RecyclerView.ViewHolder.(T, Int, MutableList<Any>) -> Unit)?
-) : ListAdapter<T, RecyclerView.ViewHolder>(MergerDiffCallback()) {
+) : ListAdapter<T, RecyclerView.ViewHolder>(MergerDiffCallback(sameItemKey = sameItemKey)) {
   init {
     submitList(listOf(data))
   }
