@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.MergeAdapter
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainItemBinding
+import com.github.satoshun.merger.DataItem
 import com.github.satoshun.merger.Item
 import com.github.satoshun.merger.ListItem
 
@@ -36,6 +37,16 @@ class MergerActivity : AppCompatActivity() {
         initialData = data,
         layoutId = R.layout.main_item,
         areItemsTheSame = { a, b -> a == b }
+      ) { text, _ ->
+        val mainItem = MainItemBinding.bind(itemView)
+        mainItem.chip.text = text
+      }
+    )
+
+    mergeAdapter.addAdapter(
+      DataItem(
+        data = "hello",
+        layoutId = R.layout.main_item
       ) { text, _ ->
         val mainItem = MainItemBinding.bind(itemView)
         mainItem.chip.text = text
