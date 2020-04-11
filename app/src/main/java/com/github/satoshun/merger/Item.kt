@@ -7,22 +7,28 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 @Suppress("FunctionName")
-fun Item(
+fun <T : Any> Item(
+  data: T,
   layoutId: Int,
-  bind: RecyclerView.ViewHolder.(position: Int) -> Unit
-): Item = Item(
+  sameItemKey: (T) -> Any = ::tautology,
+  bind: RecyclerView.ViewHolder.(T, Int) -> Unit
+): Item<T> = Item(
+  data,
   layoutId,
-  bind,
-  null
+  sameItemKey = sameItemKey,
+  bind = bind,
+  bindPayloads = null
 )
 
-class Item(
+class Item<T : Any>(
+  data: T,
   @LayoutRes private val layoutId: Int,
-  private val bind: RecyclerView.ViewHolder.(position: Int) -> Unit,
-  private val bindPayloads: (RecyclerView.ViewHolder.(position: Int, payloads: MutableList<Any>) -> Unit)?
-) : ListAdapter<Int, RecyclerView.ViewHolder>(MergerDiffCallback()) {
+  sameItemKey: (T) -> Any = ::tautology,
+  private val bind: RecyclerView.ViewHolder.(T, Int) -> Unit,
+  private val bindPayloads: (RecyclerView.ViewHolder.(T, Int, MutableList<Any>) -> Unit)?
+) : ListAdapter<T, RecyclerView.ViewHolder>(MergerDiffCallback(sameItemKey = sameItemKey)) {
   init {
-    submitList(listOf(layoutId))
+    submitList(listOf(data))
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -34,7 +40,7 @@ class Item(
   }
 
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    holder.bind(position)
+    holder.bind(getItem(position), position)
   }
 
   override fun onBindViewHolder(
@@ -46,7 +52,7 @@ class Item(
     if (bindPayloads == null) {
       super.onBindViewHolder(holder, position, payloads)
     } else {
-      holder.bindPayloads(position, payloads)
+      holder.bindPayloads(getItem(position), position, payloads)
     }
   }
 

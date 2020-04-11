@@ -36,7 +36,8 @@ open class ListItem<T : Any>(
 ) : ListAdapter<T, RecyclerView.ViewHolder>(diffCallback) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return MergerViewHolder(
-      LayoutInflater.from(parent.context)
+      LayoutInflater
+        .from(parent.context)
         .inflate(layoutId, parent, false)
     )
   }

@@ -7,39 +7,34 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 @Suppress("FunctionName")
-fun <T : Any> DataItem(
-  data: T,
+fun NonDiffItem(
   layoutId: Int,
-  sameItemKey: (T) -> Any = ::tautology,
-  bind: RecyclerView.ViewHolder.(T, Int) -> Unit
-): DataItem<T> = DataItem(
-  data,
+  bind: RecyclerView.ViewHolder.(position: Int) -> Unit
+): NonDiffItem = NonDiffItem(
   layoutId,
-  sameItemKey = sameItemKey,
-  bind = bind,
-  bindPayloads = null
+  bind,
+  null
 )
 
-class DataItem<T : Any>(
-  private val data: T,
+class NonDiffItem(
   @LayoutRes private val layoutId: Int,
-  sameItemKey: (T) -> Any = ::tautology,
-  private val bind: RecyclerView.ViewHolder.(T, Int) -> Unit,
-  private val bindPayloads: (RecyclerView.ViewHolder.(T, Int, MutableList<Any>) -> Unit)?
-) : ListAdapter<T, RecyclerView.ViewHolder>(MergerDiffCallback(sameItemKey = sameItemKey)) {
+  private val bind: RecyclerView.ViewHolder.(position: Int) -> Unit,
+  private val bindPayloads: (RecyclerView.ViewHolder.(position: Int, payloads: MutableList<Any>) -> Unit)?
+) : ListAdapter<Int, RecyclerView.ViewHolder>(MergerDiffCallback()) {
   init {
-    submitList(listOf(data))
+    submitList(listOf(layoutId))
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return MergerViewHolder(
-      LayoutInflater.from(parent.context)
+      LayoutInflater
+        .from(parent.context)
         .inflate(layoutId, parent, false)
     )
   }
 
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    holder.bind(getItem(position), position)
+    holder.bind(position)
   }
 
   override fun onBindViewHolder(
@@ -51,7 +46,7 @@ class DataItem<T : Any>(
     if (bindPayloads == null) {
       super.onBindViewHolder(holder, position, payloads)
     } else {
-      holder.bindPayloads(getItem(position), position, payloads)
+      holder.bindPayloads(position, payloads)
     }
   }
 
