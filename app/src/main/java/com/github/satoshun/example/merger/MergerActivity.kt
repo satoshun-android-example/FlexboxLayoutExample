@@ -62,6 +62,7 @@ class MergerActivity : AppCompatActivity() {
     fun swapTest() {
       val item = Item(
         data = User(id = "1", name = "t1"),
+        sameItemKey = { it.id },
         layoutId = R.layout.main_item
       ) { user, _ ->
         val mainItem = MainItemBinding.bind(itemView)
@@ -70,6 +71,7 @@ class MergerActivity : AppCompatActivity() {
 
       val item2 = Item(
         data = User(id = "2", name = "t2"),
+        sameItemKey = { it.id },
         layoutId = R.layout.main_item
       ) { user, _ ->
         val mainItem = MainItemBinding.bind(itemView)
@@ -92,13 +94,21 @@ class MergerActivity : AppCompatActivity() {
 
     fun updateTest() {
       val data1 = User(id = "1", name = "t1")
-      val item1 = Item(data = data1, layoutId = R.layout.main_item) { user, _ ->
+      val item1 = Item(
+        data = data1,
+        sameItemKey = { it.id },
+        layoutId = R.layout.main_item
+      ) { user, _ ->
         val mainItem = MainItemBinding.bind(itemView)
         mainItem.chip.text = user.name
       }
 
       val data2 = User(id = "2", name = "t2")
-      val item2 = Item(data = data2, layoutId = R.layout.main_item) { user, _ ->
+      val item2 = Item(
+        data = data2,
+        sameItemKey = { it.id },
+        layoutId = R.layout.main_item
+      ) { user, _ ->
         val mainItem = MainItemBinding.bind(itemView)
         mainItem.chip.text = user.name
       }
