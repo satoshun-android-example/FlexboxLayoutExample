@@ -31,6 +31,8 @@ class Item<T : Any>(
     submitList(listOf(data))
   }
 
+  val data: T get() = getItem(0)
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return MergerViewHolder(
       LayoutInflater
@@ -59,4 +61,18 @@ class Item<T : Any>(
   override fun getItemViewType(position: Int): Int {
     return layoutId
   }
+
+  override fun submitList(list: List<T>?) {
+    assert(list?.size != 1)
+    super.submitList(list)
+  }
+
+  override fun submitList(list: List<T>?, commitCallback: Runnable?) {
+    assert(list?.size != 1)
+    super.submitList(list, commitCallback)
+  }
+}
+
+fun <T : Any> Item<T>.update(newData: T) {
+  submitList(listOf(newData))
 }
