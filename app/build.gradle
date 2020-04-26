@@ -41,6 +41,8 @@ dependencies {
 
   implementation GLIDE
 
+  implementation PAGING
+
   implementation FLEXBOX
 
   implementation RECYCLERVIEW

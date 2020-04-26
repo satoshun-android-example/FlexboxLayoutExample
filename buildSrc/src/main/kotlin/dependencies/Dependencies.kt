@@ -32,7 +32,9 @@ const val WEBKIT = "androidx.webkit:webkit:1.0.0"
 const val MEDIA2 = "androidx.media2:media2:1.0.0-alpha04"
 
 const val MATERIAL = "com.google.android.material:material:1.1.0"
-const val PAGING = "androidx.paging:paging-runtime:2.1.0"
+
+const val PAGING = "androidx.paging:paging-runtime-ktx:2.1.2"
+
 const val BROWSER = "androidx.browser:browser:1.0.0"
 const val NAVIGATION = "android.arch.navigation:navigation-fragment-ktx:$VNAVIGATION"
 const val NAVIGATION_UI = "android.arch.navigation:navigation-ui-ktx:$VNAVIGATION"
