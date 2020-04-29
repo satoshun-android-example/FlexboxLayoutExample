@@ -8,6 +8,7 @@ import com.github.satoshun.example.cardviewsviewgroup.CardViewsViewGroupActivity
 import com.github.satoshun.example.databinding.AppActBinding
 import com.github.satoshun.example.diff.DiffActivity
 import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
+import com.github.satoshun.example.disblescroll.DisableScrollActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
@@ -23,6 +24,10 @@ class AppActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AppActBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.disableScroll.setOnClickListener {
+      startActivity(Intent(this, DisableScrollActivity::class.java))
+    }
 
     binding.merger.setOnClickListener {
       startActivity(Intent(this, MergerActivity::class.java))

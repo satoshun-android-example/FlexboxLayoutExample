@@ -34,5 +34,6 @@
     <activity android:name=".cardviews.CardViewsActivity" />
     <activity android:name=".cardviewsviewgroup.CardViewsViewGroupActivity" />
     <activity android:name=".itemtouchhelper.ItemTouchHelperActivity" />
+    <activity android:name=".disblescroll.DisableScrollActivity" />
   </application>
 </manifest>
