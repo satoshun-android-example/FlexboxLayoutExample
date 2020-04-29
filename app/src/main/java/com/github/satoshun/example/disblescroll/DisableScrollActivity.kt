@@ -1,6 +1,5 @@
 package com.github.satoshun.example.disblescroll
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -22,22 +21,17 @@ class DisableScrollActivity : AppCompatActivity() {
 
     with(binding.recycler) {
       layoutManager = LayoutManger1(this@DisableScrollActivity)
+      layoutManager = LayoutManger2(this@DisableScrollActivity)
+      layoutManager = LayoutManger3(this@DisableScrollActivity)
+      layoutManager = LayoutManger4(this@DisableScrollActivity)
+      layoutManager = LinearLayoutManager(this@DisableScrollActivity)
+
+      isNestedScrollingEnabled = false
 
       adapter = SampleAdapter().apply {
         submitList((0..1000).map { it.toString() })
       }
     }
-  }
-}
-
-private class LayoutManger1(context: Context) : LinearLayoutManager(context) {
-  override fun canScrollVertically(): Boolean {
-    return false
-  }
-
-  override fun scrollVerticallyBy(dy: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
-    Log.d("scrollVerticallyBy", "$dy")
-    return super.scrollVerticallyBy(dy, recycler, state)
   }
 }
 
@@ -61,5 +55,7 @@ private class SampleAdapter : ListAdapter<String, RecyclerView.ViewHolder>(
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     val view = holder.itemView as TextView
     view.text = getItem(position)
+
+    Log.d("onBind", "$position")
   }
 }
