@@ -8,6 +8,12 @@
   tools:ignore="HardcodedText">
 
   <Button
+    android:id="@+id/horizontal_bind_chip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Chip Bind" />
+
+  <Button
     android:id="@+id/disable_scroll"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

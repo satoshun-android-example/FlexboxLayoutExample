@@ -35,5 +35,6 @@
     <activity android:name=".cardviewsviewgroup.CardViewsViewGroupActivity" />
     <activity android:name=".itemtouchhelper.ItemTouchHelperActivity" />
     <activity android:name=".disblescroll.DisableScrollActivity" />
+    <activity android:name=".horizontalchipbind.HorizontalChipBindActivity" />
   </application>
 </manifest>
