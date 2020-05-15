@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.*
 import com.github.satoshun.example.R
 import com.github.satoshun.example.databinding.ChipBinding
@@ -13,8 +12,6 @@ import com.google.android.material.chip.Chip
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class HorizontalChipBindActivity : AppCompatActivity() {
   private lateinit var binding: HorizontalChipBindActBinding
@@ -54,7 +51,7 @@ class HorizontalChipBindActivity : AppCompatActivity() {
       }
     }
 
-    // ok
+    // ng
     with(binding.recycler4) {
       layoutManager = StaggeredGridLayoutManager(
         2,
@@ -67,7 +64,7 @@ class HorizontalChipBindActivity : AppCompatActivity() {
       }
     }
 
-    // ok
+    // ng
     with(binding.testSection.recycler5) {
       val myAdapter = SampleAdapter2().apply {
         update((0..1000).map {
@@ -85,13 +82,6 @@ class HorizontalChipBindActivity : AppCompatActivity() {
         20,
         20
       )
-
-      lifecycleScope.launch {
-        delay(4000)
-        myAdapter.update((0..1000).map {
-          SampleItem(it.toString())
-        })
-      }
     }
   }
 }
