@@ -22,7 +22,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           android:orientation="vertical">
 
           <androidx.recyclerview.widget.RecyclerView
@@ -69,22 +69,12 @@
               app:layout_constraintTop_toTopOf="parent" />
           </androidx.constraintlayout.widget.ConstraintLayout>
 
-          <androidx.constraintlayout.widget.ConstraintLayout
+          <include
+            android:id="@+id/test_section"
+            layout="@layout/horizontal_chip_bind1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/recycler5"
-              android:layout_width="match_parent"
-              android:layout_height="100dp"
-              android:clipToPadding="false"
-              android:nestedScrollingEnabled="false"
-              android:paddingStart="8dp"
-              android:paddingEnd="8dp"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
-          </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
       </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </com.google.android.material.appbar.CollapsingToolbarLayout>
