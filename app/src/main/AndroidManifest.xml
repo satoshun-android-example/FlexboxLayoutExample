@@ -36,5 +36,6 @@
     <activity android:name=".itemtouchhelper.ItemTouchHelperActivity" />
     <activity android:name=".disblescroll.DisableScrollActivity" />
     <activity android:name=".horizontalchipbind.HorizontalChipBindActivity" />
+    <activity android:name=".constraintlayoutmatch.ConstraintMatchConstraintsActivity" />
   </application>
 </manifest>

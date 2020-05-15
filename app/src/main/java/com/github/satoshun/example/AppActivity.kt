@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.example.cardviews.CardViewsActivity
 import com.github.satoshun.example.cardviewsviewgroup.CardViewsViewGroupActivity
+import com.github.satoshun.example.constraintlayoutmatch.ConstraintMatchConstraintsActivity
 import com.github.satoshun.example.databinding.AppActBinding
 import com.github.satoshun.example.diff.DiffActivity
 import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
@@ -25,6 +26,10 @@ class AppActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AppActBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.constraintMatchConstraints.setOnClickListener {
+      startActivity(Intent(this, ConstraintMatchConstraintsActivity::class.java))
+    }
 
     binding.horizontalBindChip.setOnClickListener {
       startActivity(Intent(this, HorizontalChipBindActivity::class.java))
