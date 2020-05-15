@@ -22,7 +22,8 @@ class ConstraintMatchConstraintsActivity : AppCompatActivity() {
     listOf(
       binding.recycler0,
       binding.recycler1,
-      binding.recycler2
+      binding.recycler2,
+      binding.recycler3
     ).forEachIndexed { index, recycler ->
       with(recycler) {
         layoutManager = LinearLayoutManager(
@@ -31,7 +32,7 @@ class ConstraintMatchConstraintsActivity : AppCompatActivity() {
           false
         )
         adapter = SampleAdapter().apply {
-          submitList((10..1000).map { "$index $it" })
+          submitList((0..500).map { "$index $it" })
         }
       }
     }
