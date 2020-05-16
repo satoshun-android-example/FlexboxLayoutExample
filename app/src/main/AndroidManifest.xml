@@ -37,5 +37,6 @@
     <activity android:name=".disblescroll.DisableScrollActivity" />
     <activity android:name=".horizontalchipbind.HorizontalChipBindActivity" />
     <activity android:name=".constraintlayoutmatch.ConstraintMatchConstraintsActivity" />
+    <activity android:name=".hasfixedsize.HasFixedSizeActivity" />
   </application>
 </manifest>

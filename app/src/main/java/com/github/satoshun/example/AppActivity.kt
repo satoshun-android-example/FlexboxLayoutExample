@@ -12,6 +12,7 @@ import com.github.satoshun.example.diffgroupie.DiffGroupieActivity
 import com.github.satoshun.example.disblescroll.DisableScrollActivity
 import com.github.satoshun.example.flexbox.FlexboxActivity
 import com.github.satoshun.example.flexbox2.FlexboxActivity2
+import com.github.satoshun.example.hasfixedsize.HasFixedSizeActivity
 import com.github.satoshun.example.horizontalchipbind.HorizontalChipBindActivity
 import com.github.satoshun.example.inconsistency.InconsistencyDetectActivity
 import com.github.satoshun.example.itemtouchhelper.ItemTouchHelperActivity
@@ -26,6 +27,10 @@ class AppActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = AppActBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    binding.hasFixedSize.setOnClickListener {
+      startActivity(Intent(this, HasFixedSizeActivity::class.java))
+    }
 
     binding.constraintMatchConstraints.setOnClickListener {
       startActivity(Intent(this, ConstraintMatchConstraintsActivity::class.java))
